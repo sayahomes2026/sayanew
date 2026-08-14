@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>Why Choose Us</title>
+
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+body {
+
+  background: #fff;
+
+  color: #171717;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+}
+
+
+/* =====================================================
+   SECTION
+===================================================== */
+
+.why-section {
+
+  position: relative;
+
+  padding:
+    110px 5vw;
+
+  background:
+    #f7f6f3;
+
+  overflow: hidden;
+
+}
+
+
+.why-container {
+
+  width: 100%;
+
+  max-width: 1400px;
+
+  margin: 0 auto;
+
+}
+
+
+/* =====================================================
+   BACKGROUND NUMBER
+===================================================== */
+
+.why-section::before {
+
+  content: "WHY";
+
+  position: absolute;
+
+  top: 20px;
+
+  right: 3vw;
+
+  color:
+    rgba(155,113,56,.035);
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    clamp(150px, 25vw, 380px);
+
+  line-height: 1;
+
+  pointer-events: none;
+
+  user-select: none;
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.why-header {
+
+  position: relative;
+
+  z-index: 2;
+
+  display: grid;
+
+  grid-template-columns:
+    1.2fr
+    .8fr;
+
+  gap: 80px;
+
+  align-items: end;
+
+  margin-bottom: 65px;
+
+}
+
+
+.why-label {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 17px;
+
+  color: #9b7138;
+
+  font-size: 10px;
+
+  font-weight: 600;
+
+  letter-spacing: 2.5px;
+
+  text-transform: uppercase;
+
+}
+
+
+.why-label span {
+
+  width: 30px;
+
+  height: 1px;
+
+  background: #9b7138;
+
+}
+
+
+.why-title {
+
+  max-width: 800px;
+
+  color: #141414;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    clamp(48px, 6vw, 82px);
+
+  font-weight: 400;
+
+  line-height: .92;
+
+  letter-spacing: -4px;
+
+}
+
+
+.why-title em {
+
+  color: #a9a9a9;
+
+  font-style: normal;
+
+}
+
+
+.why-intro {
+
+  max-width: 390px;
+
+  color: #595959;
+
+  font-size: 12px;
+
+  line-height: 1.9;
+
+}
+
+
+/* =====================================================
+   FEATURES
+===================================================== */
+
+.why-grid {
+
+  position: relative;
+
+  z-index: 2;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  border-top:
+    1px solid #dcdad5;
+
+  border-left:
+    1px solid #dcdad5;
+
+}
+
+
+/* =====================================================
+   FEATURE CARD
+===================================================== */
+
+.why-card {
+
+  position: relative;
+
+  min-height: 330px;
+
+  padding:
+    35px 30px 32px;
+
+  background: #f7f6f3;
+
+  border-right:
+    1px solid #dcdad5;
+
+  border-bottom:
+    1px solid #dcdad5;
+
+  overflow: hidden;
+
+  cursor: default;
+
+  transition:
+    background .5s ease,
+    color .5s ease,
+    transform .5s
+    cubic-bezier(
+      .16,
+      1,
+      .3,
+      1
+    );
+
+}
+
+
+/* =====================================================
+   CARD HOVER BACKGROUND
+===================================================== */
+
+.why-card::before {
+
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+
+  right: 0;
+
+  bottom: 0;
+
+  height: 0;
+
+  background: #9b7138;
+
+  transition:
+    height .55s
+    cubic-bezier(
+      .16,
+      1,
+      .3,
+      1
+    );
+
+}
+
+
+.why-card:hover::before {
+
+  height: 100%;
+
+}
+
+
+/* =====================================================
+   CARD CONTENT
+===================================================== */
+
+.why-card > * {
+
+  position: relative;
+
+  z-index: 2;
+
+}
+
+
+/* =====================================================
+   NUMBER
+===================================================== */
+
+.why-number {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  margin-bottom: 75px;
+
+}
+
+
+.why-number span:first-child {
+
+  color: #a18a67;
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-size: 13px;
+
+}
+
+
+.why-number span:last-child {
+
+  width: 28px;
+
+  height: 28px;
+
+  display: grid;
+
+  place-items: center;
+
+  color: #9b7138;
+
+  border:
+    1px solid
+    rgba(
+      155,
+      113,
+      56,
+      .35
+    );
+
+  border-radius: 50%;
+
+  font-size: 11px;
+
+  transition:
+    transform .5s ease,
+    background .5s ease,
+    color .5s ease,
+    border-color .5s ease;
+
+}
+
+
+.why-card:hover
+.why-number span:last-child {
+
+  color: #9b7138;
+
+  background: #fff;
+
+  border-color: #fff;
+
+  transform:
+    rotate(45deg);
+
+}
+
+
+/* =====================================================
+   ICON
+===================================================== */
+
+.why-icon {
+
+  width: 48px;
+
+  height: 48px;
+
+  display: grid;
+
+  place-items: center;
+
+  margin-bottom: 24px;
+
+  color: #9b7138;
+
+  border:
+    1px solid
+    rgba(
+      155,
+      113,
+      56,
+      .3
+    );
+
+  border-radius: 50%;
+
+  font-size: 18px;
+
+  transition:
+    transform .6s
+    cubic-bezier(
+      .16,
+      1,
+      .3,
+      1
+    ),
+
+    background .5s ease,
+
+    color .5s ease,
+
+    border-color .5s ease;
+
+}
+
+
+.why-card:hover
+.why-icon {
+
+  color: #9b7138;
+
+  background: #fff;
+
+  border-color: #fff;
+
+  transform:
+    translateY(-5px)
+    rotate(-8deg);
+
+}
+
+
+/* =====================================================
+   CARD TITLE
+===================================================== */
+
+.why-card h3 {
+
+  margin-bottom: 13px;
+
+  color: #181818;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 25px;
+
+  font-weight: 400;
+
+  line-height: 1.05;
+
+  letter-spacing: -.7px;
+
+  transition:
+    color .45s ease;
+
+}
+
+
+.why-card:hover h3 {
+
+  color: #fff;
+
+}
+
+
+/* =====================================================
+   CARD TEXT
+===================================================== */
+
+.why-card p {
+
+  max-width: 250px;
+
+  color: #666;
+
+  font-size: 10px;
+
+  line-height: 1.75;
+
+  transition:
+    color .45s ease;
+
+}
+
+
+.why-card:hover p {
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      .82
+    );
+
+}
+
+
+/* =====================================================
+   CARD BOTTOM LINE
+===================================================== */
+
+.why-line {
+
+  position: absolute;
+
+  left: 30px;
+
+  bottom: 25px;
+
+  width: 45px;
+
+  height: 1px;
+
+  background: #c6b18f;
+
+  transition:
+    width .55s
+    cubic-bezier(
+      .16,
+      1,
+      .3,
+      1
+    ),
+
+    background .45s ease;
+
+}
+
+
+.why-card:hover
+.why-line {
+
+  width: 100px;
+
+  background: #fff;
+
+}
+
+
+/* =====================================================
+   BOTTOM STATEMENT
+===================================================== */
+
+.why-bottom {
+
+  position: relative;
+
+  z-index: 2;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 40px;
+
+  margin-top: 55px;
+
+  padding-top: 30px;
+
+  border-top:
+    1px solid #dcdad5;
+
+}
+
+
+.why-bottom-text {
+
+  max-width: 600px;
+
+  color: #555;
+
+  font-size: 11px;
+
+  line-height: 1.8;
+
+}
+
+
+.why-bottom-text strong {
+
+  color: #171717;
+
+  font-weight: 600;
+
+}
+
+
+.why-link {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  color: #222;
+
+  text-decoration: none;
+
+  font-size: 10px;
+
+  font-weight: 600;
+
+  letter-spacing: 1.5px;
+
+  text-transform: uppercase;
+
+}
+
+
+.why-link-arrow {
+
+  width: 32px;
+
+  height: 32px;
+
+  display: grid;
+
+  place-items: center;
+
+  color: #9b7138;
+
+  border:
+    1px solid #cfcfcf;
+
+  border-radius: 50%;
+
+  transition:
+    transform .35s ease,
+    background .35s ease,
+    color .35s ease;
+
+}
+
+
+.why-link:hover
+.why-link-arrow {
+
+  color: #fff;
+
+  background: #9b7138;
+
+  transform:
+    rotate(45deg);
+
+}
+
+
+/* =====================================================
+   REVEAL ANIMATION
+===================================================== */
+
+.why-reveal {
+
+  opacity: 0;
+
+  transform:
+    translateY(35px);
+
+  transition:
+    opacity .8s ease,
+    transform .9s
+    cubic-bezier(
+      .16,
+      1,
+      .3,
+      1
+    );
+
+}
+
+
+.why-reveal.active {
+
+  opacity: 1;
+
+  transform:
+    translateY(0);
+
+}
+
+
+/* =====================================================
+   STAGGER
+===================================================== */
+
+.why-card:nth-child(1) {
+
+  transition-delay: .05s;
+
+}
+
+
+.why-card:nth-child(2) {
+
+  transition-delay: .12s;
+
+}
+
+
+.why-card:nth-child(3) {
+
+  transition-delay: .19s;
+
+}
+
+
+.why-card:nth-child(4) {
+
+  transition-delay: .26s;
+
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (
+  max-width: 950px
+) {
+
+  .why-header {
+
+    grid-template-columns:
+      1fr;
+
+    gap: 25px;
+
+  }
+
+
+  .why-intro {
+
+    max-width: 500px;
+
+  }
+
+
+  .why-grid {
+
+    grid-template-columns:
+      repeat(2, 1fr);
+
+  }
+
+
+  .why-card {
+
+    min-height: 310px;
+
+  }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (
+  max-width: 650px
+) {
+
+  .why-section {
+
+    padding:
+      70px 18px;
+
+  }
+
+
+  .why-section::before {
+
+    top: 40px;
+
+    right: -20px;
+
+    font-size: 150px;
+
+  }
+
+
+  .why-header {
+
+    margin-bottom: 45px;
+
+  }
+
+
+  .why-title {
+
+    font-size: 49px;
+
+    letter-spacing:
+      -2.5px;
+
+  }
+
+
+  .why-intro {
+
+    font-size: 11px;
+
+    line-height: 1.8;
+
+  }
+
+
+  .why-grid {
+
+    grid-template-columns:
+      1fr;
+
+  }
+
+
+  .why-card {
+
+    min-height: 300px;
+
+    padding:
+      28px 24px 30px;
+
+  }
+
+
+  .why-number {
+
+    margin-bottom: 55px;
+
+  }
+
+
+  .why-bottom {
+
+    display: block;
+
+    margin-top: 40px;
+
+  }
+
+
+  .why-bottom-text {
+
+    margin-bottom: 25px;
+
+  }
+
+}
+
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (
+  prefers-reduced-motion: reduce
+) {
+
+  *,
+  *::before,
+  *::after {
+
+    animation: none !important;
+
+    transition-duration:
+      .01ms !important;
+
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<section class="why-section">
+
+
+<div class="why-container">
+
+
+<!-- =================================================
+     HEADER
+================================================== -->
+
+<div class="why-header why-reveal">
+
+
+<div>
+
+<div class="why-label">
+
+<span></span>
+
+Why Choose Us
+
+</div>
+
+
+<h2 class="why-title">
+
+Built on
+<em>Trust.</em>
+Driven by
+Excellence.
+
+</h2>
+
+</div>
+
+
+<p class="why-intro">
+
+We create spaces that combine thoughtful
+design, lasting quality and a commitment
+to delivering exceptional value at every
+stage of the journey.
+
+</p>
+
+</div>
+
+
+
+<!-- =================================================
+     FEATURES
+================================================== -->
+
+<div class="why-grid why-reveal">
+
+
+<!-- CARD 01 -->
+
+<div class="why-card">
+
+<div class="why-number">
+
+<span>
+01
+</span>
+
+<span>
+↗
+</span>
+
+</div>
+
+
+<div class="why-icon">
+◆
+</div>
+
+
+<h3>
+Prime Locations
+</h3>
+
+
+<p>
+
+Strategically located developments
+designed to offer connectivity,
+convenience and long-term value.
+
+</p>
+
+
+<div class="why-line"></div>
+
+</div>
+
+
+
+<!-- CARD 02 -->
+
+<div class="why-card">
+
+<div class="why-number">
+
+<span>
+02
+</span>
+
+<span>
+↗
+</span>
+
+</div>
+
+
+<div class="why-icon">
+◇
+</div>
+
+
+<h3>
+Exceptional Quality
+</h3>
+
+
+<p>
+
+From materials to execution, every
+detail is carefully considered to
+deliver lasting quality.
+
+</p>
+
+
+<div class="why-line"></div>
+
+</div>
+
+
+
+<!-- CARD 03 -->
+
+<div class="why-card">
+
+<div class="why-number">
+
+<span>
+03
+</span>
+
+<span>
+↗
+</span>
+
+</div>
+
+
+<div class="why-icon">
+✦
+</div>
+
+
+<h3>
+Thoughtful Design
+</h3>
+
+
+<p>
+
+Architecture that balances aesthetics,
+functionality and the way modern
+communities actually live.
+
+</p>
+
+
+<div class="why-line"></div>
+
+</div>
+
+
+
+<!-- CARD 04 -->
+
+<div class="why-card">
+
+<div class="why-number">
+
+<span>
+04
+</span>
+
+<span>
+↗
+</span>
+
+</div>
+
+
+<div class="why-icon">
+○
+</div>
+
+
+<h3>
+Customer First
+</h3>
+
+
+<p>
+
+A transparent and responsive approach
+that keeps our customers at the heart
+of every decision.
+
+</p>
+
+
+<div class="why-line"></div>
+
+</div>
+
+
+</div>
+
+
+
+<!-- =================================================
+     BOTTOM
+================================================== -->
+
+<div class="why-bottom why-reveal">
+
+
+<p class="why-bottom-text">
+
+<strong>
+More than spaces, we create confidence.
+</strong>
+
+Every project reflects our commitment to
+quality, integrity and long-term relationships.
+
+</p>
+
+
+<a
+  href="#"
+  class="why-link"
+>
+
+Discover Our Approach
+
+<span class="why-link-arrow">
+↗
+</span>
+
+</a>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<script>
+
+/* =====================================================
+   SCROLL REVEAL
+===================================================== */
+
+const whyReveal =
+  document.querySelectorAll(
+    ".why-reveal"
+  );
+
+
+const whyObserver =
+  new IntersectionObserver(
+    entries => {
+
+      entries.forEach(
+        entry => {
+
+          if (
+            entry.isIntersecting
+          ) {
+
+            entry.target.classList.add(
+              "active"
+            );
+
+
+            whyObserver.unobserve(
+              entry.target
+            );
+
+          }
+
+        }
+      );
+
+    },
+    {
+      threshold: .15
+    }
+  );
+
+
+whyReveal.forEach(
+  element => {
+
+    whyObserver.observe(
+      element
+    );
+
+  }
+);
+
+
+/* =====================================================
+   MOUSE PARALLAX ON CARDS
+===================================================== */
+
+const whyCards =
+  document.querySelectorAll(
+    ".why-card"
+  );
+
+
+whyCards.forEach(
+  card => {
+
+    card.addEventListener(
+      "mousemove",
+      event => {
+
+        if (
+          window.innerWidth <= 950
+        ) {
+
+          return;
+
+        }
+
+
+        const rect =
+          card.getBoundingClientRect();
+
+
+        const x =
+          event.clientX -
+          rect.left;
+
+
+        const y =
+          event.clientY -
+          rect.top;
+
+
+        const rotateY =
+          (
+            x /
+            rect.width -
+            .5
+          ) * 3;
+
+
+        const rotateX =
+          (
+            y /
+            rect.height -
+            .5
+          ) * -3;
+
+
+        card.style.transform =
+          `
+          perspective(900px)
+          rotateX(${rotateX}deg)
+          rotateY(${rotateY}deg)
+          translateY(-4px)
+          `;
+
+      }
+    );
+
+
+    card.addEventListener(
+      "mouseleave",
+      () => {
+
+        card.style.transform =
+          "";
+
+      }
+    );
+
+  }
+);
+
+</script>
+
+
+</body>
+
+</html>

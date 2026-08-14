@@ -1,0 +1,44 @@
+/* Disable text selection */
+body {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Allow interaction with buttons and links only */
+button,
+a,
+select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Image protection */
+img {
+    pointer-events: none;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+}
+
+/* Allow interaction with chatbot and interactive images */
+[id*="engt"] img,
+[class*="engt"] img,
+[id*="engati"] img,
+[class*="engati"] img,
+img[id*="engt"],
+img[class*="engt"],
+img[id*="engati"],
+img[class*="engati"] {
+    pointer-events: auto !important;
+}
+
+/* Blur effect when window loses focus */
+body.content-blur {
+    filter: blur(10px);
+    -webkit-filter: blur(10px);
+}

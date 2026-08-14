@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Saya Piazza — Connectivity</title>
+
+<style>
+/* =========================================================
+   SAYA PIAZZA — CONNECTIVITY SECTION
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:wght@400;500&display=swap');
+
+:root {
+    --bg: #f3efe7;
+    --paper: #ebe5da;
+    --text: #25231f;
+    --muted: #777168;
+    --gold: #a88755;
+    --gold-light: #c8aa76;
+    --line: rgba(65, 59, 49, .16);
+    --white: #fffdf8;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "DM Sans", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+
+/* =========================================================
+   SECTION
+   ========================================================= */
+
+.location-section {
+    position: relative;
+    min-height: 900px;
+    overflow: hidden;
+    background:
+        radial-gradient(
+            circle at 50% 50%,
+            rgba(200,170,118,.14),
+            transparent 34%
+        ),
+        var(--bg);
+}
+
+
+/* =========================================================
+   BACKGROUND MAP
+   ========================================================= */
+
+.map-background {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: .65;
+}
+
+.map-grid {
+    position: absolute;
+    inset: -20%;
+    transform: rotate(-5deg) scale(1.2);
+
+    background-image:
+        linear-gradient(
+            25deg,
+            transparent 48%,
+            rgba(70,65,55,.055) 49%,
+            transparent 50%
+        ),
+        linear-gradient(
+            115deg,
+            transparent 48%,
+            rgba(70,65,55,.045) 49%,
+            transparent 50%
+        ),
+        linear-gradient(
+            rgba(70,65,55,.035) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(70,65,55,.035) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        260px 260px,
+        340px 340px,
+        75px 75px,
+        75px 75px;
+}
+
+
+/* Roads */
+
+.map-road {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(75,69,59,.18),
+        transparent
+    );
+    transform-origin: left;
+}
+
+.road-1 {
+    width: 120%;
+    left: -10%;
+    top: 31%;
+    transform: rotate(12deg);
+}
+
+.road-2 {
+    width: 100%;
+    left: 8%;
+    top: 61%;
+    transform: rotate(-18deg);
+}
+
+.road-3 {
+    width: 90%;
+    left: 30%;
+    top: 20%;
+    transform: rotate(72deg);
+}
+
+.road-4 {
+    width: 85%;
+    left: 44%;
+    top: 72%;
+    transform: rotate(115deg);
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+   ========================================================= */
+
+.location-container {
+    position: relative;
+    z-index: 2;
+
+    width: min(1440px, 90%);
+    margin: auto;
+
+    padding: 110px 0 80px;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.location-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    margin-bottom: 40px;
+}
+
+.location-kicker {
+    margin-bottom: 16px;
+
+    font-size: 11px;
+    font-weight: 500;
+
+    letter-spacing: 4px;
+    text-transform: uppercase;
+
+    color: var(--gold);
+}
+
+.location-title {
+    max-width: 650px;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(
+        44px,
+        6vw,
+        78px
+    );
+
+    line-height: .98;
+    font-weight: 400;
+
+    color: var(--text);
+}
+
+.location-description {
+    max-width: 280px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   MAP AREA
+   ========================================================= */
+
+.map-wrapper {
+    position: relative;
+
+    width: 100%;
+    height: 580px;
+
+    border: 1px solid var(--line);
+
+    background:
+        radial-gradient(
+            circle at 50% 50%,
+            rgba(255,255,255,.45),
+            transparent 42%
+        );
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   SVG ROUTES
+   ========================================================= */
+
+.routes {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: visible;
+}
+
+.route-glow {
+    fill: none;
+
+    stroke: var(--gold-light);
+
+    stroke-width: 5;
+
+    opacity: .13;
+
+    filter: blur(4px);
+}
+
+.route {
+    fill: none;
+
+    stroke: var(--gold);
+
+    stroke-width: 1.4;
+
+    stroke-dasharray: 5 8;
+
+    opacity: .8;
+
+    animation:
+        routeAnimation 5s linear infinite;
+}
+
+@keyframes routeAnimation {
+
+    from {
+        stroke-dashoffset: 0;
+    }
+
+    to {
+        stroke-dashoffset: -120;
+    }
+}
+
+
+/* =========================================================
+   CENTER SAYA PIAZZA
+   ========================================================= */
+
+.center-location {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 10;
+
+    text-align: center;
+}
+
+.center-marker {
+    position: relative;
+
+    width: 70px;
+    height: 70px;
+
+    margin: auto;
+
+    border-radius: 50%;
+
+    background: var(--text);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow:
+        0 0 0 12px rgba(168,135,85,.08),
+        0 15px 40px rgba(30,28,24,.15);
+}
+
+
+/* Inner marker */
+
+.center-marker::before {
+    content: "";
+
+    width: 15px;
+    height: 15px;
+
+    border-radius: 50%;
+
+    background: var(--gold-light);
+}
+
+
+/* Pulse */
+
+.center-marker::after {
+    content: "";
+
+    position: absolute;
+
+    inset: -12px;
+
+    border: 1px solid rgba(168,135,85,.45);
+
+    border-radius: 50%;
+
+    animation: centerPulse 2.5s ease-out infinite;
+}
+
+@keyframes centerPulse {
+
+    0% {
+        transform: scale(.7);
+        opacity: .9;
+    }
+
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+
+.center-name {
+    margin-top: 20px;
+
+    padding: 12px 20px;
+
+    background: rgba(243,239,231,.88);
+
+    border: 1px solid var(--line);
+
+    backdrop-filter: blur(10px);
+
+    white-space: nowrap;
+}
+
+.center-name strong {
+    display: block;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.center-name span {
+    display: block;
+
+    margin-top: 5px;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    color: var(--gold);
+}
+
+
+/* =========================================================
+   DESTINATION CARDS
+   ========================================================= */
+
+.destination {
+    position: absolute;
+
+    z-index: 20;
+
+    display: flex;
+    align-items: center;
+
+    min-width: 205px;
+
+    padding: 13px 17px;
+
+    background: rgba(255,253,248,.83);
+
+    border: 1px solid rgba(70,65,55,.12);
+
+    backdrop-filter: blur(12px);
+
+    transition:
+        transform .45s cubic-bezier(.2,.8,.2,1),
+        border-color .3s,
+        box-shadow .3s;
+
+    animation:
+        cardAppear .8s both;
+}
+
+.destination:hover {
+
+    transform: translateY(-7px);
+
+    border-color: rgba(168,135,85,.55);
+
+    box-shadow:
+        0 18px 40px rgba(50,45,38,.10);
+}
+
+
+/* Marker dot */
+
+.destination-dot {
+    position: relative;
+
+    width: 9px;
+    height: 9px;
+
+    flex-shrink: 0;
+
+    margin-right: 13px;
+
+    border-radius: 50%;
+
+    background: var(--gold);
+}
+
+.destination-dot::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: -5px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(168,135,85,.35);
+
+    animation: dotPulse 2s infinite;
+}
+
+@keyframes dotPulse {
+
+    0%,
+    100% {
+        transform: scale(.8);
+        opacity: .5;
+    }
+
+    50% {
+        transform: scale(1.3);
+        opacity: 1;
+    }
+}
+
+
+.destination-name {
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 15px;
+
+    line-height: 1.2;
+
+    color: var(--text);
+}
+
+.destination-time {
+
+    margin-top: 5px;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    color: var(--gold);
+}
+
+
+/* =========================================================
+   POSITIONS
+   ========================================================= */
+
+.destination-1 {
+    left: 5%;
+    top: 13%;
+
+    animation-delay: .1s;
+}
+
+.destination-2 {
+    right: 5%;
+    top: 12%;
+
+    animation-delay: .25s;
+}
+
+.destination-3 {
+    left: 3%;
+    top: 62%;
+
+    animation-delay: .4s;
+}
+
+.destination-4 {
+    right: 3%;
+    top: 62%;
+
+    animation-delay: .55s;
+}
+
+.destination-5 {
+    left: 24%;
+    bottom: 5%;
+
+    animation-delay: .7s;
+}
+
+.destination-6 {
+    right: 22%;
+    bottom: 5%;
+
+    animation-delay: .85s;
+}
+
+
+@keyframes cardAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   BOTTOM CTA
+   ========================================================= */
+
+.map-footer {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-top: 25px;
+}
+
+.map-note {
+
+    font-size: 10px;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+
+    color: var(--muted);
+}
+
+.map-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    padding: 15px 23px;
+
+    color: var(--text);
+
+    text-decoration: none;
+
+    border: 1px solid var(--text);
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    transition: .3s ease;
+}
+
+.map-button span {
+
+    color: var(--gold);
+
+    font-size: 17px;
+
+    line-height: 0;
+}
+
+.map-button:hover {
+
+    background: var(--text);
+
+    color: var(--white);
+}
+
+.map-button:hover span {
+
+    color: var(--gold-light);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .location-container {
+        padding: 75px 0 55px;
+    }
+
+    .location-header {
+        display: block;
+    }
+
+    .location-description {
+        margin-top: 20px;
+    }
+
+    .map-wrapper {
+        height: auto;
+
+        padding: 40px 20px;
+    }
+
+    .routes,
+    .map-background {
+        display: none;
+    }
+
+    .center-location {
+        position: relative;
+
+        left: auto;
+        top: auto;
+
+        transform: none;
+
+        margin-bottom: 35px;
+    }
+
+    .destination {
+        position: relative;
+
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        bottom: auto !important;
+
+        width: 100%;
+
+        margin-bottom: 10px;
+    }
+
+    .destination:hover {
+        transform: translateY(-2px);
+    }
+
+    .map-footer {
+        display: block;
+    }
+
+    .map-note {
+        margin-bottom: 20px;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .location-title {
+        font-size: 45px;
+    }
+
+    .location-section {
+        min-height: auto;
+    }
+
+    .map-button {
+        width: 100%;
+
+        justify-content: center;
+    }
+}
+</style>
+</head>
+
+
+<body>
+
+
+<section class="location-section">
+
+
+    <!-- =====================================================
+         BACKGROUND MAP
+         ===================================================== -->
+
+    <div class="map-background">
+
+        <div class="map-grid"></div>
+
+        <div class="map-road road-1"></div>
+        <div class="map-road road-2"></div>
+        <div class="map-road road-3"></div>
+        <div class="map-road road-4"></div>
+
+    </div>
+
+
+    <!-- =====================================================
+         CONTENT
+         ===================================================== -->
+
+    <div class="location-container">
+
+
+        <!-- HEADER -->
+
+        <div class="location-header">
+
+            <div>
+
+                <div class="location-kicker">
+                    Connectivity
+                </div>
+
+                <h2 class="location-title">
+                    At the centre of<br>
+                    tomorrow’s growth
+                </h2>
+
+            </div>
+
+
+            <p class="location-description">
+                Strategically positioned for seamless
+                connectivity to Noida, Delhi and the
+                region's most important destinations.
+            </p>
+
+        </div>
+
+
+        <!-- =================================================
+             MAP
+             ================================================= -->
+
+        <div class="map-wrapper">
+
+
+            <!-- SVG ROUTES -->
+
+            <svg
+                class="routes"
+                viewBox="0 0 1200 580"
+                preserveAspectRatio="none"
+            >
+
+                <!-- 137 Metro -->
+
+                <path
+                    class="route-glow"
+                    d="M600 290
+                       C500 235
+                       365 165
+                       125 105"
+                />
+
+                <path
+                    class="route"
+                    d="M600 290
+                       C500 235
+                       365 165
+                       125 105"
+                />
+
+
+                <!-- Amity -->
+
+                <path
+                    class="route-glow"
+                    d="M600 290
+                       C720 235
+                       855 165
+                       1080 105"
+                />
+
+                <path
+                    class="route"
+                    d="M600 290
+                       C720 235
+                       855 165
+                       1080 105"
+                />
+
+
+                <!-- DND -->
+
+                <path
+                    class="route-glow"
+                    d="M600 290
+                       C470 325
+                       300 370
+                       100 390"
+                />
+
+                <path
+                    class="route"
+                    d="M600 290
+                       C470 325
+                       300 370
+                       100 390"
+                />
+
+
+                <!-- JP Hospital -->
+
+                <path
+                    class="route-glow"
+                    d="M600 290
+                       C730 330
+                       900 370
+                       1100 390"
+                />
+
+                <path
+                    class="route"
+                    d="M600 290
+                       C730 330
+                       900 370
+                       1100 390"
+                />
+
+
+                <!-- Akshardham -->
+
+                <path
+                    class="route-glow"
+                    d="M600 290
+                       C560 375
+                       450 465
+                       350 530"
+                />
+
+                <path
+                    class="route"
+                    d="M600 290
+                       C560 375
+                       450 465
+                       350 530"
+                />
+
+
+                <!-- Airport -->
+
+                <path
+                    class="route-glow"
+                    d="M600 290
+                       C700 375
+                       820 465
+                       965 530"
+                />
+
+                <path
+                    class="route"
+                    d="M600 290
+                       C700 375
+                       820 465
+                       965 530"
+                />
+
+            </svg>
+
+
+            <!-- =================================================
+                 CENTER
+                 ================================================= -->
+
+            <div class="center-location">
+
+                <div class="center-marker"></div>
+
+                <div class="center-name">
+
+                    <strong>
+                        Saya Piazza
+                    </strong>
+
+                    <span>
+                        Greater Noida
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 DESTINATION 1
+                 ================================================= -->
+
+            <div class="destination destination-1">
+
+                <div class="destination-dot"></div>
+
+                <div>
+
+                    <div class="destination-name">
+                        137 Metro Station
+                    </div>
+
+                    <div class="destination-time">
+                        5 Min
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 DESTINATION 2
+                 ================================================= -->
+
+            <div class="destination destination-2">
+
+                <div class="destination-dot"></div>
+
+                <div>
+
+                    <div class="destination-name">
+                        Amity University
+                    </div>
+
+                    <div class="destination-time">
+                        5 Min
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 DESTINATION 3
+                 ================================================= -->
+
+            <div class="destination destination-3">
+
+                <div class="destination-dot"></div>
+
+                <div>
+
+                    <div class="destination-name">
+                        DND &amp; Sector 18, Noida
+                    </div>
+
+                    <div class="destination-time">
+                        10 Min
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 DESTINATION 4
+                 ================================================= -->
+
+            <div class="destination destination-4">
+
+                <div class="destination-dot"></div>
+
+                <div>
+
+                    <div class="destination-name">
+                        JP Multispeciality Hospital
+                    </div>
+
+                    <div class="destination-time">
+                        10 Min
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 DESTINATION 5
+                 ================================================= -->
+
+            <div class="destination destination-5">
+
+                <div class="destination-dot"></div>
+
+                <div>
+
+                    <div class="destination-name">
+                        Akshardham
+                    </div>
+
+                    <div class="destination-time">
+                        15 Min
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 DESTINATION 6
+                 ================================================= -->
+
+            <div class="destination destination-6">
+
+                <div class="destination-dot"></div>
+
+                <div>
+
+                    <div class="destination-name">
+                        Noida International Airport
+                    </div>
+
+                    <div class="destination-time">
+                        30 Min
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =================================================
+             FOOTER
+             ================================================= -->
+
+        <div class="map-footer">
+
+            <div class="map-note">
+                Well connected to Delhi NCR
+            </div>
+
+            <a
+                class="map-button"
+                href="https://sayahomes.com/sayapiazza/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                View on Map
+
+                <span>↗</span>
+            </a>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<script>
+
+/* =========================================================
+   SAYA PIAZZA — MAP INTERACTION
+   ========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const destinations =
+        document.querySelectorAll(".destination");
+
+    destinations.forEach((destination, index) => {
+
+        destination.addEventListener("mouseenter", () => {
+
+            destinations.forEach(item => {
+
+                if (item !== destination) {
+
+                    item.style.opacity = ".45";
+
+                }
+
+            });
+
+        });
+
+
+        destination.addEventListener("mouseleave", () => {
+
+            destinations.forEach(item => {
+
+                item.style.opacity = "1";
+
+            });
+
+        });
+
+    });
+
+
+    /*
+     * Slight mouse movement effect
+     * for desktop map area.
+     */
+
+    const map =
+        document.querySelector(".map-wrapper");
+
+    const center =
+        document.querySelector(".center-location");
+
+
+    if (window.innerWidth > 900) {
+
+        map.addEventListener("mousemove", (event) => {
+
+            const rect =
+                map.getBoundingClientRect();
+
+            const x =
+                (event.clientX - rect.left)
+                / rect.width
+                - .5;
+
+            const y =
+                (event.clientY - rect.top)
+                / rect.height
+                - .5;
+
+
+            center.style.transform =
+                `translate(
+                    calc(-50% + ${x * 8}px),
+                    calc(-50% + ${y * 8}px)
+                )`;
+
+        });
+
+
+        map.addEventListener("mouseleave", () => {
+
+            center.style.transform =
+                "translate(-50%, -50%)";
+
+        });
+
+    }
+
+});
+
+</script>
+
+
+</body>
+</html>
