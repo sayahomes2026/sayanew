@@ -1,0 +1,1969 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Why Choose Saya Homes</title>
+
+
+  <style>
+
+    /* =====================================================
+       RESET
+    ===================================================== */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+
+    body {
+
+      margin: 0;
+
+      font-family:
+        "Arial",
+        "Helvetica Neue",
+        Helvetica,
+        sans-serif;
+
+      background: #dce4e5;
+
+      overflow-x: hidden;
+
+      color: #f4f0e9;
+    }
+
+
+
+    /* =====================================================
+       MAIN SECTION
+    ===================================================== */
+
+    .saya-section {
+
+      position: relative;
+
+      min-height: 200vh;
+
+      padding: 0;
+
+      overflow: visible;
+
+      isolation: isolate;
+    }
+
+
+
+    /* =====================================================
+       BACKGROUND IMAGE
+    ===================================================== */
+
+    .background-image {
+
+      position: absolute;
+
+      top: 0;
+      left: 0;
+
+      width: 100%;
+
+      height: 100vh;
+
+      object-fit: cover;
+
+      object-position: center;
+
+      z-index: -10;
+    }
+
+
+
+    /* =====================================================
+       BACKGROUND OVERLAY
+    ===================================================== */
+
+    .background-overlay {
+
+      position: absolute;
+
+      inset: 0;
+
+      width: 100%;
+
+      height: 100vh;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(54, 69, 74, 0.08) 0%,
+          rgba(38, 51, 55, 0.18) 100%
+        );
+
+      z-index: -9;
+
+      pointer-events: none;
+    }
+
+
+
+    /* =====================================================
+       STICKY SCREEN
+    ===================================================== */
+
+    .sticky-screen {
+
+      position: sticky;
+
+      top: 0;
+
+      width: 100%;
+
+      height: 100vh;
+
+      overflow: hidden;
+
+      z-index: 2;
+    }
+
+
+
+    /* =====================================================
+       LARGE SAYA HOMES TEXT
+    ===================================================== */
+
+    .saya-title {
+
+      position: absolute;
+
+      top: 15%;
+
+      left: 50%;
+
+      width: 100%;
+
+      text-align: center;
+
+      z-index: -5;
+
+      font-size:
+        clamp(
+          100px,
+          19vw,
+          310px
+        );
+
+      font-weight: 300;
+
+      letter-spacing:
+        -0.085em;
+
+      line-height: 0.78;
+
+      color:
+        rgba(
+          246,
+          243,
+          237,
+          0.45
+        );
+
+      white-space: nowrap;
+
+      transform:
+        translateX(-50%)
+        translateY(250px);
+
+      opacity: 0;
+
+      filter: blur(1px);
+
+      transition:
+
+        transform
+        3s
+        cubic-bezier(
+          0.16,
+          1,
+          0.3,
+          1
+        ),
+
+        opacity
+        2s
+        ease,
+
+        filter
+        2s
+        ease;
+    }
+
+
+
+    .saya-section.active
+    .saya-title {
+
+      opacity: 1;
+
+      transform:
+        translateX(-50%)
+        translateY(-25px);
+
+      filter: blur(0);
+    }
+
+
+
+    /* =====================================================
+       CONTENT
+    ===================================================== */
+
+    .content {
+
+      position: relative;
+
+      width: 100%;
+
+      height: 100vh;
+
+      margin: 0 auto;
+
+      z-index: 2;
+    }
+
+
+
+    /* =====================================================
+       VISUAL AREA
+
+       IMPORTANT:
+       Full width.
+    ===================================================== */
+
+    .visual-area {
+
+      position: absolute;
+
+      top: clamp(
+        80px,
+        10vh,
+        110px
+      );
+
+      left: 0;
+
+      width: 100%;
+
+      height:
+        calc(
+          100vh - 80px
+        );
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: flex-start;
+    }
+
+
+
+    /* =====================================================
+       BUILDING IMAGE WRAPPER
+
+       FULL WIDTH
+    ===================================================== */
+
+    .foreground-image-wrap {
+
+      position: relative;
+
+      width: 100%;
+
+      max-width: none;
+
+      margin: 0 auto;
+
+      z-index: 3;
+
+      opacity: 0;
+
+      transform:
+        translateY(70px)
+        scale(0.98);
+
+      transition:
+
+        opacity
+        1.2s
+        ease,
+
+        transform
+        1.5s
+        cubic-bezier(
+          0.16,
+          1,
+          0.3,
+          1
+        );
+    }
+
+
+
+    .saya-section.active
+    .foreground-image-wrap {
+
+      opacity: 1;
+
+      transform:
+        translateY(0)
+        scale(1);
+    }
+
+
+
+    /* =====================================================
+       BUILDING IMAGE
+
+       Uses complete available width.
+    ===================================================== */
+
+    .foreground-image {
+
+      display: block;
+
+      width: 100%;
+
+      max-width: none;
+
+      height: auto;
+
+      object-fit: contain;
+
+      object-position: center;
+
+      filter:
+        drop-shadow(
+          0
+          28px
+          42px
+          rgba(
+            0,
+            0,
+            0,
+            0.16
+          )
+        );
+    }
+
+
+
+    /* =====================================================
+       POINTER BASE
+
+       Positioned relative to the visual area.
+    ===================================================== */
+
+    .image-point {
+
+      position: absolute;
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 10px;
+
+      z-index: 10;
+
+      opacity: 0;
+
+      pointer-events: none;
+
+      transition:
+
+        opacity
+        0.8s
+        ease,
+
+        transform
+        0.9s
+        cubic-bezier(
+          0.16,
+          1,
+          0.3,
+          1
+        );
+    }
+
+
+
+    /* =====================================================
+       POINTER CARD
+
+       Subtle background for readability.
+    ===================================================== */
+
+    .point-content {
+
+      width: 190px;
+
+      padding:
+        12px
+        15px;
+
+      border:
+        1px solid
+        rgba(
+          239,
+          234,
+          225,
+          0.18
+        );
+
+      background:
+        rgba(
+          48,
+          61,
+          65,
+          0.68
+        );
+
+      backdrop-filter:
+        blur(10px);
+
+      -webkit-backdrop-filter:
+        blur(10px);
+
+      border-radius: 2px;
+
+      box-shadow:
+        0
+        10px
+        30px
+        rgba(
+          0,
+          0,
+          0,
+          0.12
+        );
+    }
+
+
+
+    /* =====================================================
+       NUMBER
+    ===================================================== */
+
+    .point-number {
+
+      display: block;
+
+      margin-bottom: 5px;
+
+      color:
+        rgba(
+          241,
+          235,
+          225,
+          0.48
+        );
+
+      font-size: 9px;
+
+      font-weight: 400;
+
+      letter-spacing:
+        0.18em;
+    }
+
+
+
+    /* =====================================================
+       TITLE
+    ===================================================== */
+
+    .point-title {
+
+      margin-bottom: 5px;
+
+      color:
+        rgba(
+          248,
+          244,
+          237,
+          0.95
+        );
+
+      font-size: 13px;
+
+      font-weight: 500;
+
+      letter-spacing:
+        0.01em;
+
+      line-height: 1.25;
+    }
+
+
+
+    /* =====================================================
+       DESCRIPTION
+    ===================================================== */
+
+    .point-description {
+
+      color:
+        rgba(
+          238,
+          233,
+          225,
+          0.68
+        );
+
+      font-size: 10px;
+
+      font-weight: 300;
+
+      line-height: 1.55;
+    }
+
+
+
+    /* =====================================================
+       POINTER LINE
+    ===================================================== */
+
+    .point-line {
+
+      position: relative;
+
+      width: clamp(
+        45px,
+        6vw,
+        90px
+      );
+
+      height: 1px;
+
+      flex-shrink: 0;
+
+      background:
+        rgba(
+          241,
+          235,
+          225,
+          0.60
+        );
+    }
+
+
+
+    /* =====================================================
+       POINTER DOT
+    ===================================================== */
+
+    .point-dot {
+
+      position: absolute;
+
+      top: 50%;
+
+      width: 8px;
+
+      height: 8px;
+
+      border-radius: 50%;
+
+      background:
+        #f2eee6;
+
+      transform:
+        translateY(-50%);
+
+      box-shadow:
+        0
+        0
+        0
+        4px
+        rgba(
+          242,
+          238,
+          230,
+          0.13
+        );
+    }
+
+
+
+    /* =====================================================
+       DESKTOP POINTER POSITIONS
+
+       These are now closer to the building.
+    ===================================================== */
+
+
+    /* -----------------------------------------------
+       LEFT TOP
+    ------------------------------------------------ */
+
+    .point-left-top {
+
+      left: 4%;
+
+      top: 48%;
+
+      justify-content: flex-end;
+
+      transform:
+        translateX(-30px);
+    }
+
+
+    .point-left-top
+    .point-line {
+
+      order: 2;
+    }
+
+
+    .point-left-top
+    .point-dot {
+
+      right: -4px;
+    }
+
+
+
+    /* -----------------------------------------------
+       RIGHT TOP
+    ------------------------------------------------ */
+
+    .point-right-top {
+
+      right: 4%;
+
+      top: 22%;
+
+      justify-content: flex-start;
+
+      transform:
+        translateX(30px);
+    }
+
+
+    .point-right-top
+    .point-dot {
+
+      left: -4px;
+    }
+
+
+
+    /* -----------------------------------------------
+       LEFT BOTTOM
+    ------------------------------------------------ */
+
+    .point-left-bottom {
+
+      left: 4%;
+
+      top: 70%;
+
+      justify-content: flex-end;
+
+      transform:
+        translateX(-30px);
+    }
+
+
+    .point-left-bottom
+    .point-line {
+
+      order: 2;
+    }
+
+
+    .point-left-bottom
+    .point-dot {
+
+      right: -4px;
+    }
+
+
+
+    /* -----------------------------------------------
+       RIGHT BOTTOM
+    ------------------------------------------------ */
+
+    .point-right-bottom {
+
+      right: 4%;
+
+      top: 60%;
+
+      justify-content: flex-start;
+
+      transform:
+        translateX(30px);
+    }
+
+
+    .point-right-bottom
+    .point-dot {
+
+      left: -4px;
+    }
+
+
+
+    /* =====================================================
+       POINTS VISIBLE
+    ===================================================== */
+
+    .saya-section.points-visible
+    .image-point {
+
+      opacity: 1;
+
+      transform:
+        translateX(0);
+    }
+
+
+
+    /* =====================================================
+       STAGGER
+    ===================================================== */
+
+    .saya-section.points-visible
+    .point-left-top {
+
+      transition-delay:
+        0.10s;
+    }
+
+
+    .saya-section.points-visible
+    .point-right-top {
+
+      transition-delay:
+        0.30s;
+    }
+
+
+    .saya-section.points-visible
+    .point-left-bottom {
+
+      transition-delay:
+        0.50s;
+    }
+
+
+    .saya-section.points-visible
+    .point-right-bottom {
+
+      transition-delay:
+        0.70s;
+    }
+
+
+
+    /* =====================================================
+       WHY CHOOSE US
+    ===================================================== */
+
+    .why-content {
+
+      position: absolute;
+
+      left: 50%;
+
+      bottom: 0;
+
+      width:
+        min(
+          1000px,
+          94%
+        );
+
+      min-height: 65vh;
+
+      transform:
+        translateX(-50%)
+        translateY(
+          calc(
+            100% -
+            (
+              var(--why-progress, 0)
+              * 100%
+            )
+          )
+        );
+
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content: center;
+
+      align-items: center;
+
+      text-align: center;
+
+      padding:
+        70px
+        30px;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(
+            55,
+            67,
+            70,
+            0.90
+          ),
+          rgba(
+            39,
+            51,
+            55,
+            0.98
+          )
+        );
+
+      backdrop-filter:
+        blur(18px);
+
+      -webkit-backdrop-filter:
+        blur(18px);
+
+      border-radius:
+        2px
+        2px
+        0
+        0;
+
+      box-shadow:
+        0
+        -25px
+        70px
+        rgba(
+          0,
+          0,
+          0,
+          0.18
+        );
+
+      z-index: 20;
+
+      will-change: transform;
+
+      transition:
+        transform
+        0.05s
+        linear;
+    }
+
+
+
+    /* =====================================================
+       WHY TOP LINE
+    ===================================================== */
+
+    .why-content::before {
+
+      content: "";
+
+      position: absolute;
+
+      top: 28px;
+
+      left: 50%;
+
+      width: 45px;
+
+      height: 1px;
+
+      background:
+        rgba(
+          241,
+          235,
+          225,
+          0.45
+        );
+
+      transform:
+        translateX(-50%);
+    }
+
+
+
+    /* =====================================================
+       WHY LABEL
+    ===================================================== */
+
+    .why-label {
+
+      display: block;
+
+      margin-bottom: 20px;
+
+      color:
+        rgba(
+          241,
+          235,
+          225,
+          0.58
+        );
+
+      font-size: 10px;
+
+      font-weight: 400;
+
+      letter-spacing:
+        0.25em;
+
+      text-transform:
+        uppercase;
+    }
+
+
+
+    /* =====================================================
+       WHY HEADING
+    ===================================================== */
+
+    .why-heading {
+
+      margin-bottom: 25px;
+
+      color:
+        rgba(
+          248,
+          245,
+          239,
+          0.96
+        );
+
+      font-size:
+        clamp(
+          48px,
+          7vw,
+          90px
+        );
+
+      font-weight: 300;
+
+      letter-spacing:
+        -0.06em;
+
+      line-height: 0.92;
+    }
+
+
+
+    /* =====================================================
+       WHY DESCRIPTION
+    ===================================================== */
+
+    .why-description {
+
+      width:
+        min(
+          650px,
+          100%
+        );
+
+      margin:
+        0 auto;
+
+      color:
+        rgba(
+          238,
+          233,
+          225,
+          0.68
+        );
+
+      font-size: 14px;
+
+      font-weight: 300;
+
+      line-height: 1.8;
+    }
+
+
+
+    /* =====================================================
+       TABLET
+    ===================================================== */
+
+    @media
+      (min-width: 701px)
+      and
+      (max-width: 1100px) {
+
+
+      .foreground-image-wrap {
+
+        width: 100%;
+      }
+
+
+      .image-point {
+
+        width: auto;
+
+        max-width: 270px;
+      }
+
+
+      .point-content {
+
+        width: 165px;
+
+        padding:
+          10px
+          12px;
+      }
+
+
+      .point-line {
+
+        width: 45px;
+      }
+
+
+      .point-left-top,
+      .point-left-bottom {
+
+        left: 3%;
+      }
+
+
+      .point-right-top,
+      .point-right-bottom {
+
+        right: 3%;
+      }
+
+
+      .point-left-top,
+      .point-right-top {
+
+        top: 23%;
+      }
+
+
+      .point-left-bottom,
+      .point-right-bottom {
+
+        top: 58%;
+      }
+
+    }
+
+
+
+    /* =====================================================
+       MOBILE
+    ===================================================== */
+
+    @media (max-width: 700px) {
+
+
+      .saya-section {
+
+        min-height: 180vh;
+
+        padding: 0;
+      }
+
+
+
+      .sticky-screen {
+
+        height: 100vh;
+
+        overflow: hidden;
+      }
+
+
+
+      /* -----------------------------------------------
+         SAYA TITLE
+      ------------------------------------------------ */
+
+      .saya-title {
+
+        top: 15%;
+
+        font-size: 27vw;
+
+        transform:
+          translateX(-50%)
+          translateY(220px);
+      }
+
+
+      .saya-section.active
+      .saya-title {
+
+        transform:
+          translateX(-50%)
+          translateY(-15px);
+      }
+
+
+
+      /* -----------------------------------------------
+         VISUAL AREA
+      ------------------------------------------------ */
+
+      .visual-area {
+
+        top: 80px;
+
+        width: 100%;
+
+        height:
+          calc(
+            100vh - 80px
+          );
+
+        display: block;
+      }
+
+
+
+      /* -----------------------------------------------
+         FULL WIDTH BUILDING
+      ------------------------------------------------ */
+
+      .foreground-image-wrap {
+
+        width: 100%;
+
+        margin: 0;
+
+        transform:
+          translateY(60px)
+          scale(0.98);
+      }
+
+
+      .saya-section.active
+      .foreground-image-wrap {
+
+        transform:
+          translateY(0)
+          scale(1);
+      }
+
+
+      .foreground-image {
+
+        width: 100%;
+
+        height: auto;
+      }
+
+
+
+      /* -----------------------------------------------
+         MOBILE POINTERS
+
+         Four compact cards positioned over the sides
+         of the building.
+      ------------------------------------------------ */
+
+      .image-point {
+
+        width: auto;
+
+        max-width: 45%;
+
+        gap: 5px;
+
+        position: absolute;
+      }
+
+
+      .point-content {
+
+        width: auto;
+
+        padding:
+          8px
+          9px;
+
+        background:
+          rgba(
+            48,
+            61,
+            65,
+            0.76
+          );
+
+        backdrop-filter:
+          blur(8px);
+
+        -webkit-backdrop-filter:
+          blur(8px);
+      }
+
+
+      .point-number {
+
+        font-size: 8px;
+
+        margin-bottom: 3px;
+      }
+
+
+      .point-title {
+
+        font-size: 10px;
+
+        margin-bottom: 3px;
+      }
+
+
+      .point-description {
+
+        font-size: 8px;
+
+        line-height: 1.4;
+      }
+
+
+      .point-line {
+
+        width: 22px;
+      }
+
+
+      .point-dot {
+
+        width: 7px;
+
+        height: 7px;
+      }
+
+
+
+      /* -----------------------------------------------
+         MOBILE POSITIONS
+
+         Markers remain toward the building center.
+      ------------------------------------------------ */
+
+      .point-left-top {
+
+        left: 3%;
+
+        top: 22%;
+
+        transform:
+          translateX(-20px);
+      }
+
+
+      .point-right-top {
+
+        right: 3%;
+
+        top: 22%;
+
+        transform:
+          translateX(20px);
+      }
+
+
+      .point-left-bottom {
+
+        left: 3%;
+
+        top: 53%;
+
+        transform:
+          translateX(-20px);
+      }
+
+
+      .point-right-bottom {
+
+        right: 3%;
+
+        top: 53%;
+
+        transform:
+          translateX(20px);
+      }
+
+
+      .saya-section.points-visible
+      .point-left-top,
+      .saya-section.points-visible
+      .point-right-top,
+      .saya-section.points-visible
+      .point-left-bottom,
+      .saya-section.points-visible
+      .point-right-bottom {
+
+        transform:
+          translateX(0);
+      }
+
+
+
+      /* -----------------------------------------------
+         WHY SECTION
+      ------------------------------------------------ */
+
+      .why-content {
+
+        width: 96%;
+
+        min-height: 70vh;
+
+        padding:
+          60px
+          20px;
+
+        transform:
+          translateX(-50%)
+          translateY(
+            calc(
+              100% -
+              (
+                var(--why-progress, 0)
+                * 100%
+              )
+            )
+          );
+      }
+
+
+      .why-heading {
+
+        font-size: 47px;
+      }
+
+
+      .why-description {
+
+        font-size: 13px;
+
+        line-height: 1.7;
+      }
+
+    }
+
+
+
+    /* =====================================================
+       SMALL MOBILE
+    ===================================================== */
+
+    @media (max-width: 450px) {
+
+
+      .saya-title {
+
+        font-size: 26vw;
+      }
+
+
+      .foreground-image-wrap {
+
+        width: 100%;
+      }
+
+
+      .image-point {
+
+        max-width: 44%;
+      }
+
+
+      .point-content {
+
+        padding:
+          7px
+          8px;
+      }
+
+
+      .point-title {
+
+        font-size: 9px;
+      }
+
+
+      .point-description {
+
+        font-size: 7.5px;
+      }
+
+
+      .point-line {
+
+        width: 16px;
+      }
+
+
+      .point-left-top,
+      .point-right-top {
+
+        top: 21%;
+      }
+
+
+      .point-left-bottom,
+      .point-right-bottom {
+
+        top: 51%;
+      }
+
+
+      .why-heading {
+
+        font-size: 43px;
+      }
+
+    }
+
+
+
+    /* =====================================================
+       VERY LARGE DESKTOP
+
+       Bring pointer markers further toward building.
+    ===================================================== */
+
+    @media (min-width: 1400px) {
+
+
+      .point-left-top,
+      .point-left-bottom {
+
+        left: 20%;
+      }
+
+
+      .point-right-top,
+      .point-right-bottom {
+
+        right: 7%;
+      }
+
+
+      .point-line {
+
+        width: 85px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- =====================================================
+       MAIN SECTION
+  ===================================================== -->
+
+  <section
+    class="saya-section"
+    id="sayaSection"
+  >
+
+
+    <!-- =================================================
+         BACKGROUND IMAGE
+    ================================================== -->
+
+    <img
+      class="background-image"
+      src="https://sayahomes.com/saya-homes/themes/sayahomes/images/bg.jpg"
+      alt=""
+    >
+
+
+    <div
+      class="background-overlay"
+    ></div>
+
+
+
+    <!-- =================================================
+         STICKY SCREEN
+    ================================================== -->
+
+    <div class="sticky-screen">
+
+
+      <!-- =================================================
+           LARGE BACKGROUND TEXT
+      ================================================== -->
+
+      <div class="saya-title">
+        Saya Homes
+      </div>
+
+
+
+      <!-- =================================================
+           CONTENT
+      ================================================== -->
+
+      <div class="content">
+
+
+        <!-- ===============================================
+             BUILDING + POINTERS
+        ================================================ -->
+
+        <div class="visual-area">
+
+
+          <!-- =============================================
+               BUILDING
+          ============================================== -->
+
+          <div
+            class="foreground-image-wrap"
+            id="foregroundImage"
+          >
+
+            <img
+              class="foreground-image"
+
+              src="https://sayahomes.com/saya-homes/themes/sayahomes/images/building-in-transparent.png"
+
+              alt="Saya Homes"
+            >
+
+          </div>
+
+
+
+          <!-- =============================================
+               POINT 01
+          ============================================== -->
+
+          <div
+            class="image-point point-left-top"
+          >
+
+            <div class="point-content">
+
+              <span class="point-number">
+                01
+              </span>
+
+              <div class="point-title">
+                25 Years of Legacy
+              </div>
+
+              <div class="point-description">
+                A trusted name with
+                decades of experience
+                across Delhi NCR.
+              </div>
+
+            </div>
+
+
+            <div class="point-line">
+
+              <span
+                class="point-dot"
+              ></span>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- =============================================
+               POINT 02
+          ============================================== -->
+
+          <div
+            class="image-point point-right-top"
+          >
+
+            <div class="point-line">
+
+              <span
+                class="point-dot"
+              ></span>
+
+            </div>
+
+
+            <div class="point-content">
+
+              <span class="point-number">
+                02
+              </span>
+
+              <div class="point-title">
+                Prime Locations
+              </div>
+
+              <div class="point-description">
+                Strategically located
+                spaces designed for
+                connectivity and value.
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- =============================================
+               POINT 03
+          ============================================== -->
+
+          <div
+            class="image-point point-left-bottom"
+          >
+
+            <div class="point-content">
+
+              <span class="point-number">
+                03
+              </span>
+
+              <div class="point-title">
+                Quality Construction
+              </div>
+
+              <div class="point-description">
+                High standards of
+                craftsmanship with
+                attention to every detail.
+              </div>
+
+            </div>
+
+
+            <div class="point-line">
+
+              <span
+                class="point-dot"
+              ></span>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- =============================================
+               POINT 04
+          ============================================== -->
+
+          <div
+            class="image-point point-right-bottom"
+          >
+
+            <div class="point-line">
+
+              <span
+                class="point-dot"
+              ></span>
+
+            </div>
+
+
+            <div class="point-content">
+
+              <span class="point-number">
+                04
+              </span>
+
+              <div class="point-title">
+                Trust & Transparency
+              </div>
+
+              <div class="point-description">
+                Transparent processes
+                and customer-focused
+                experiences.
+              </div>
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             WHY CHOOSE US
+        ================================================== -->
+
+        <div
+          class="why-content"
+          id="whyContent"
+        >
+
+
+          <span class="why-label">
+            Why Choose Saya
+          </span>
+
+
+          <h2 class="why-heading">
+            Experience the
+            Saya difference.
+          </h2>
+
+
+          <p class="why-description">
+
+            Each space we create combines
+            creativity, functionality and
+            innovation to transform visionary
+            ideas into extraordinary experiences
+            that inspire and elevate.
+
+          </p>
+
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =====================================================
+       JAVASCRIPT
+  ===================================================== -->
+
+  <script>
+
+
+    /* =====================================================
+       ELEMENTS
+    ===================================================== */
+
+    const section =
+      document.getElementById(
+        "sayaSection"
+      );
+
+
+    const whyContent =
+      document.getElementById(
+        "whyContent"
+      );
+
+
+    let animationStarted =
+      false;
+
+
+
+    /* =====================================================
+       UPPER ANIMATION
+    ===================================================== */
+
+    const observer =
+      new IntersectionObserver(
+
+        (entries) => {
+
+          entries.forEach(
+            (entry) => {
+
+
+              if (
+                entry.isIntersecting &&
+                !animationStarted
+              ) {
+
+                animationStarted =
+                  true;
+
+
+                section.classList.add(
+                  "active"
+                );
+
+
+                setTimeout(
+                  () => {
+
+                    section.classList.add(
+                      "points-visible"
+                    );
+
+                  },
+
+                  3400
+                );
+
+              }
+
+            }
+          );
+
+        },
+
+        {
+          threshold: 0.25
+        }
+
+      );
+
+
+    observer.observe(
+      section
+    );
+
+
+
+    /* =====================================================
+       WHY SECTION SCROLL
+    ===================================================== */
+
+    function updateWhySection() {
+
+
+      const rect =
+        section.getBoundingClientRect();
+
+
+      const scrollDistance =
+        Math.max(
+          1,
+          section.offsetHeight -
+          window.innerHeight
+        );
+
+
+      const travelled =
+        Math.min(
+          scrollDistance,
+          Math.max(
+            0,
+            -rect.top
+          )
+        );
+
+
+      let progress =
+        travelled /
+        scrollDistance;
+
+
+      /* Smooth easing */
+
+      progress =
+        progress *
+        progress *
+        (
+          3 -
+          2 *
+          progress
+        );
+
+
+      whyContent.style
+        .setProperty(
+          "--why-progress",
+          progress
+        );
+
+    }
+
+
+
+    /* =====================================================
+       SCROLL LISTENER
+    ===================================================== */
+
+    let ticking =
+      false;
+
+
+    window.addEventListener(
+
+      "scroll",
+
+      () => {
+
+        if (!ticking) {
+
+          window.requestAnimationFrame(
+            () => {
+
+              updateWhySection();
+
+              ticking =
+                false;
+
+            }
+          );
+
+          ticking =
+            true;
+
+        }
+
+      },
+
+      {
+        passive: true
+      }
+
+    );
+
+
+
+    /* =====================================================
+       INITIAL POSITION
+    ===================================================== */
+
+    updateWhySection();
+
+  </script>
+
+
+</body>
+
+</html>
